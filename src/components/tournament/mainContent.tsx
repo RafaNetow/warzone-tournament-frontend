@@ -10,13 +10,7 @@ import TournamentsDataModel from "./modelList";
       };
 
       componentDidMount() {
-        const url = "http://localhost:4000/Tournament";
-        fetch(url)
-        .then(response => response.json())
-        .then((tournaments) =>  {
-          this.state.tournaments = tournaments;
-          this.setState(this.state);
-        });
+       
     }
 
  render() {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import { TournamentList } from './components/tournament/tournamentList';
 import { TournamentCreate } from './components/tournament/tournamentCreate';
@@ -7,19 +7,31 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+interface ComponentDictionary {
+  [name: string]: any;
+}
+const mainComponents: ComponentDictionary = {
+ tournamentList:<TournamentList/>,
+ tournamentCreate:<TournamentCreate/>
+};
 
 function App() {
+  const [currentComponent, setCurrentComponent] = useState("..");
   return (
+    
     <div className="App">
-      <TournamentCreate/>
-      <TournamentList />
       <Layout>
     <Header className="header">
       <div className="logo" />
       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-        <Menu.Item key="1">nav 1</Menu.Item>
-        <Menu.Item key="2">nav 2</Menu.Item>
-        <Menu.Item key="3">nav 3</Menu.Item>
+        <Menu.Item key="1">Saiymant Aplication</Menu.Item>
       </Menu>
     </Header>
     <Layout>
@@ -31,8 +43,8 @@ function App() {
           style={{ height: '100%', borderRight: 0 }}
         >
           <SubMenu key="sub1" icon={<UserOutlined />} title="Tournament">
-            <Menu.Item key="1">Create Tournament</Menu.Item>
-            <Menu.Item key="2">List Tournaments</Menu.Item>
+            <Menu.Item key="1" onClick={() => setCurrentComponent("tournamentCreate")}>Create Tournament</Menu.Item>
+            <Menu.Item key="2" onClick={() => setCurrentComponent("tournamentList")}>List Tournaments</Menu.Item>
           </SubMenu>
         </Menu>
       </Sider>
@@ -46,7 +58,14 @@ function App() {
                 minHeight: 500
               }}
             >
-              {mainComponents[this.state.currentComponent]}
+             <Switch>
+            <Route path="/password-forget-form">
+              <TournamentList />
+            </Route>
+            <Route path="/next-item">
+              <TournamentCreate component to render in the content div />
+            </Route>
+          </Switch>
             </Content>
       </Layout>
     </Layout>

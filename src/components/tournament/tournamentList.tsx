@@ -10,6 +10,7 @@ import TournamentsDataModel from "./modelList";
       };
 
       componentDidMount() {
+        console.log("...");
         const url = "http://localhost:4000/Tournament";
         fetch(url)
         .then(response => response.json())
