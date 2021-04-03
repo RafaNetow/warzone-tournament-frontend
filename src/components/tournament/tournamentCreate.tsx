@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 import TournamentCreateModel from "./modelCreate";
 function TournamentCreate() {  
   const [name, setCurrentName] = useState("..");
-  /*saveTournament = ()  => {
+  const saveTournament = ()  => {
     let history = useHistory();
     let request: any = {};
     request.name =name
@@ -28,7 +28,7 @@ function TournamentCreate() {
       .catch((error) => {
         console.error('Error:', error);
       });
-  }*/
+  }
   const { TextArea } = Input;
 
    
@@ -77,7 +77,7 @@ function TournamentCreate() {
             </Form.Item>
 
           <Form.Item {...tailLayout}>
-            <Button type="primary" htmlType="submit" >
+            <Button type="primary" htmlType="submit" onClick={saveTournament}>
               Submit
         </Button>
           </Form.Item>
@@ -86,3 +86,4 @@ function TournamentCreate() {
 
     );
   }
+}
