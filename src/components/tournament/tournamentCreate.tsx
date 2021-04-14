@@ -3,13 +3,12 @@ import "antd/dist/antd.css";
 import { Card, Avatar, Form, Input, Button } from 'antd';
 import { useState } from 'react';
 
-import Meta from "antd/lib/card/Meta";
 import { useHistory } from "react-router-dom";
-import TournamentCreateModel from "./modelCreate";
-function TournamentCreate() {  
+ function TournamentCreate() {  
   const [name, setCurrentName] = useState("..");
-  const saveTournament = ()  => {
-    let history = useHistory();
+  let history = useHistory();
+  const SaveTournament = ()  => {
+
     let request: any = {};
     request.name =name
     console.log(JSON.stringify(request));
@@ -22,7 +21,7 @@ function TournamentCreate() {
     })
       .then(response => response.json())
       .then(data => {
-        history.push("/home");
+        history.push("/tournamentList");
         console.log('Success:', data);
       })
       .catch((error) => {
@@ -77,7 +76,7 @@ function TournamentCreate() {
             </Form.Item>
 
           <Form.Item {...tailLayout}>
-            <Button type="primary" htmlType="submit" onClick={saveTournament}>
+            <Button type="primary" htmlType="submit" onClick={SaveTournament}>
               Submit
         </Button>
           </Form.Item>
@@ -85,5 +84,6 @@ function TournamentCreate() {
       </>
 
     );
-  }
 }
+
+export default TournamentCreate;

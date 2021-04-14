@@ -1,29 +1,27 @@
-import React from "react";
 import "antd/dist/antd.css";
-import { Card, Avatar } from 'antd';
+import { Card, Avatar, Col, Row  } from 'antd';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import Meta from "antd/lib/card/Meta";
 import TournamentsDataModel from "./modelList";
- export class TournamentList extends React.Component <any, any> {
-    state: TournamentsDataModel = {
-        tournaments: []
-      };
+import { useState, useEffect } from 'react';
 
-      componentDidMount() {
-        console.log("...");
+ function TournamentList ()  {
+  const [tournaments, setTournaments] = useState([]);
+  useEffect(() => {
+    console.log("...");
         const url = "http://localhost:4000/Tournament";
         fetch(url)
         .then(response => response.json())
         .then((tournaments) =>  {
-          this.state.tournaments = tournaments;
-          this.setState(this.state);
-        });
-    }
+          console.log(tournaments)
+          setTournaments(tournaments)
+  });
 
- render() {
-  let state = this.state;
-  const Tournament = state.tournaments.map((tournament) => {
-   return  <Card key = {tournament["id"]}
+     
+    }, []);
+
+  const Tournament = tournaments.map((tournament) => {
+   return (     <Col span={8}><Card key = {tournament["id"]}
     style={{ width: 300 }}
     cover={
       <img
@@ -43,16 +41,18 @@ import TournamentsDataModel from "./modelList";
       description={tournament["description"]}
     />
   </Card>
- })
+  </Col> 
+ )})
  console.log(Tournament);
     return (
     
     <>
-    
+       <Row gutter={16}>
      {Tournament} 
+     </Row>
   </>
 
     );
   }
+  export default TournamentList;
 
-}

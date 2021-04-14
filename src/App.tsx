@@ -6,8 +6,8 @@ import {
 } from "react-router-dom";
 import { useState } from 'react';
 import './App.css';
-import { TournamentList } from './components/tournament/tournamentList';
-import { TournamentCreate } from './components/tournament/tournamentCreate';
+import  TournamentList  from './components/tournament/tournamentList';
+import TournamentCreate from './components/tournament/tournamentCreate';
 import "antd/dist/antd.css";
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
@@ -67,7 +67,7 @@ function App() {
                   <TournamentList />
                 </Route>
                 <Route path="/tournamentCreate">
-                  <TournamentCreate component to render in the content div />
+                  <TournamentCreate  />
                 </Route>
               </Switch>
             </Content>
