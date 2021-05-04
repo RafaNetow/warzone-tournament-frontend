@@ -13,7 +13,6 @@ import { useState, useEffect } from 'react';
         fetch(url)
         .then(response => response.json())
         .then((tournaments) =>  {
-          console.log(tournaments)
           setTournaments(tournaments)
   });
 
